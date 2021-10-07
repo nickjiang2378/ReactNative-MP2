@@ -1,3 +1,4 @@
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
@@ -24,9 +25,14 @@ export default function MovieFilterScreen({ navigation, route }) {
     () => {
       // TODO: Recieve actors passed by MovieListScreen here, and update
       // our local state using setActors.
+      console.log("Params at Filter: ")
+      console.log(route.params)
+      if (route.params?.actors) {
+        setActors(route.params?.actors)
+      }
     },
     [
-      /* TODO: Insert dependent variables here. */
+      route?.params?.actors
     ]
   );
 
@@ -37,9 +43,15 @@ export default function MovieFilterScreen({ navigation, route }) {
       //  2) Show a "Done" button on the right that navigates back to the MovieListScreen
       //      and passes back our current list of actors via params.
       // https://reactnavigation.org/docs/header-buttons/
+      navigation.setOptions({
+        headerBackVisible: false,
+        headerLeft: () => (<Text></Text>),
+        headerRight: () => (<Button onPress={() => {console.log("Leaving with " + actors); navigation.navigate("MovieList", {actors: actors})}} title="Done" />)
+      })
     },
     [
       /* TODO: Insert dependent state variables here. */
+      actors
     ]
   );
 
@@ -56,7 +68,9 @@ export default function MovieFilterScreen({ navigation, route }) {
     } else {
       newActors.push(actor);
     }
+    console.log("Old Actors: " + actors)
     setActors(newActors);
+    console.log("New Actors: " + actors)
   };
 
   const renderSelectItem = ({ item, index }) => {

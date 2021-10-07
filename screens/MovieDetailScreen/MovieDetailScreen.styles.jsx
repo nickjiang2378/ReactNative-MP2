@@ -6,6 +6,18 @@ export const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#ffffff",
   },
+  image: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: 200,
+    height: 300,
+    resizeMode: "contain"
+  },
+  movieCellImage: { 
+    height: 80, 
+    width: 54, 
+    resizeMode: "contain" 
+  },
   h1: {
     fontFamily: "Avenir",
     fontSize: 30,
@@ -17,8 +29,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 18,
     fontWeight: "300",
-    color: "gray",
-    marginTop: 5,
+    marginTop: 20,
     textAlign: "center",
   },
   h3: {
@@ -26,7 +37,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "300",
     color: "gray",
-    marginTop: 20,
+    marginTop: 10,
     textAlign: "center",
   },
   h4: {
